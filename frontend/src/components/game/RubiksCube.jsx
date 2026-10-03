@@ -286,6 +286,13 @@ export default function RubiksCube({ controlsRef }) {
 
     updateGlow();
 
+    // Smooth whole-cube flip (upside down / back)
+    if (cubeGroup.current) {
+      const flipTarget = useGameStore.getState().flipped ? Math.PI : 0;
+      const curX = cubeGroup.current.rotation.x;
+      cubeGroup.current.rotation.x += (flipTarget - curX) * Math.min(delta * 8, 1);
+    }
+
     const ph = useGameStore.getState().phase;
     if (ph === "celebrating" || ph === "completed") {
       if (controlsRef.current) controlsRef.current.enabled = false;

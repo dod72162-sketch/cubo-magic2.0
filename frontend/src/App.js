@@ -14,6 +14,7 @@ function App() {
     const h = window.location.hash;
     if (h.includes("win")) useGameStore.getState().setPhase("completed");
     else if (h.includes("play")) useGameStore.getState().start();
+    if (h.includes("flip")) setTimeout(() => useGameStore.getState().toggleFlip(), 300);
   }, []);
 
   return (

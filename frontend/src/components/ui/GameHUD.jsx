@@ -1,4 +1,4 @@
-import { Volume2, VolumeX, RotateCcw, Palette } from "lucide-react";
+import { Volume2, VolumeX, RotateCcw, Palette, FlipVertical2 } from "lucide-react";
 import { useGameStore } from "../../store/gameStore";
 import { moveBus } from "../../game/moveBus";
 import { getSkin } from "../../game/skins";
@@ -15,6 +15,8 @@ export default function GameHUD() {
   const skinId = useGameStore((s) => s.skinId);
   const cycleSkin = useGameStore((s) => s.cycleSkin);
   const ready = useGameStore((s) => s.ready);
+  const flipped = useGameStore((s) => s.flipped);
+  const toggleFlip = useGameStore((s) => s.toggleFlip);
   const skin = getSkin(skinId);
 
   return (
@@ -49,6 +51,16 @@ export default function GameHUD() {
       </div>
 
       <div className="hud-right">
+        <button
+          className={`skin-cycle ${flipped ? "active" : ""}`}
+          onClick={toggleFlip}
+          data-testid="flip-toggle"
+          aria-label="Virar o cubo de cabeça para baixo"
+          aria-pressed={flipped}
+        >
+          <FlipVertical2 size={16} />
+          <span>{flipped ? "Desvirar" : "Virar"}</span>
+        </button>
         <button
           className="skin-cycle"
           onClick={cycleSkin}

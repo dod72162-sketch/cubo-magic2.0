@@ -206,6 +206,7 @@
   top: 76px;
   display: flex;
   justify-content: flex-end;
+  gap: 8px;
 }
 .skin-cycle {
   pointer-events: auto;
@@ -225,6 +226,11 @@
 .skin-cycle:hover {
   transform: scale(1.05);
   background: #fff;
+}
+.skin-cycle.active {
+  background: var(--rose, #e11d63);
+  border-color: transparent;
+  color: #fff;
 }
 
 /* ---------- HUD ---------- */
